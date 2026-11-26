@@ -63,6 +63,18 @@ async def lifespan(_app: FastAPI):
 app = FastAPI(title="NashiGold Chatbot", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS, allow_methods=["POST", "GET"], allow_headers=["*"])
 
+NO_CACHE_PATHS = {"/", "/index.html", "/widget.js"}
+
+
+@app.middleware("http")
+async def no_cache_widget(request: Request, call_next):
+    # Make browsers revalidate the widget on every load so new deploys show up immediately.
+    response = await call_next(request)
+    if request.url.path in NO_CACHE_PATHS:
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 _hits: dict[str, deque] = defaultdict(deque)
 
 

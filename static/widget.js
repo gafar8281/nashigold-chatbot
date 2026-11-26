@@ -7,7 +7,7 @@
   var API = (script && script.dataset.api) || "";
   var GOLD = "#B8860B";
   var BASE = API || (script && script.src ? script.src.replace(/\/[^\/]*$/, "") : "");
-  var LOGO = BASE + "/chat-logo.png";
+  var LOGO = BASE + "/chat-logo.png?v=2";
   var history = [];
 
   var css = `
@@ -32,6 +32,12 @@
   var btn = document.createElement("button");
   btn.id = "ng-btn"; btn.setAttribute("aria-label", "Chat");
   var logo = document.createElement("img");
+  logo.onerror = function () {
+    // Logo failed to load: fall back to a gold bubble with an emoji.
+    btn.removeChild(logo);
+    btn.textContent = "💬";
+    btn.style.cssText = "width:60px;height:60px;border-radius:50%;background:" + GOLD + ";color:#fff;font-size:26px";
+  };
   logo.src = LOGO; logo.alt = "Chat with NashiGold";
   btn.appendChild(logo);
   var box = document.createElement("div");

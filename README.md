@@ -63,6 +63,8 @@ Deploy the backend (Render, Railway, a VPS, AWS/GCP…), set `ALLOWED_ORIGINS` t
 - **WordPress/WooCommerce:** a plugin like "Insert Headers and Footers", or your theme footer
 - **Custom site:** your main layout template
 
+The server sends `widget.js` with `Cache-Control: no-cache`, so updates show up on the next page load. If your site or CDN caches scripts anyway, add a version and bump it after each update, e.g. `widget.js?v=2`.
+
 ## Keeping data fresh
 
 - Export your catalog to `products.csv` (Shopify and WooCommerce both export CSV; map the columns) and re-run `python ingest.py`. Schedule it nightly with cron.
