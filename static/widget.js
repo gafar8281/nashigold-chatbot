@@ -6,11 +6,15 @@
   var script = document.currentScript;
   var API = (script && script.dataset.api) || "";
   var GOLD = "#B8860B";
+  var BASE = API || (script && script.src ? script.src.replace(/\/[^\/]*$/, "") : "");
+  var LOGO = BASE + "/chat-logo.png";
   var history = [];
 
   var css = `
-  #ng-btn{position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:${GOLD};color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:99999}
-  #ng-box{position:fixed;bottom:92px;right:20px;width:360px;max-width:calc(100vw - 40px);height:520px;max-height:calc(100vh - 120px);background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.2);display:none;flex-direction:column;overflow:hidden;z-index:99999;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+  #ng-btn{position:fixed;bottom:20px;right:20px;width:84px;height:84px;padding:0;background:transparent;border:none;cursor:pointer;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));transition:transform .15s ease;z-index:99999}
+  #ng-btn:hover{transform:scale(1.06)}
+  #ng-btn img{width:100%;height:100%;object-fit:contain;display:block}
+  #ng-box{position:fixed;bottom:116px;right:20px;width:360px;max-width:calc(100vw - 40px);height:520px;max-height:calc(100vh - 120px);background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.2);display:none;flex-direction:column;overflow:hidden;z-index:99999;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
   #ng-head{background:${GOLD};color:#fff;padding:14px 16px;font-weight:600}
   #ng-head small{display:block;font-weight:400;opacity:.85}
   #ng-msgs{flex:1;overflow-y:auto;padding:12px;background:#faf8f3}
@@ -26,7 +30,10 @@
   document.head.appendChild(style);
 
   var btn = document.createElement("button");
-  btn.id = "ng-btn"; btn.setAttribute("aria-label", "Chat"); btn.textContent = "💬";
+  btn.id = "ng-btn"; btn.setAttribute("aria-label", "Chat");
+  var logo = document.createElement("img");
+  logo.src = LOGO; logo.alt = "Chat with NashiGold";
+  btn.appendChild(logo);
   var box = document.createElement("div");
   box.id = "ng-box";
   box.innerHTML =
