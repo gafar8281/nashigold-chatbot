@@ -24,7 +24,11 @@
   .ng-a a{color:${GOLD};font-weight:600}
   #ng-form{display:flex;border-top:1px solid #eee}
   #ng-in{flex:1;border:none;padding:12px;font-size:14px;outline:none}
-  #ng-send{background:none;border:none;color:${GOLD};font-weight:700;padding:0 16px;cursor:pointer}`;
+  #ng-send{background:none;border:none;color:${GOLD};font-weight:700;padding:0 16px;cursor:pointer}
+  @media (max-width:600px){
+    #ng-btn{bottom:calc(80px + env(safe-area-inset-bottom,0px));right:16px}
+    #ng-box{bottom:calc(176px + env(safe-area-inset-bottom,0px));right:16px;max-width:calc(100vw - 32px);max-height:calc(100vh - 200px)}
+  }`;
   var style = document.createElement("style");
   style.textContent = css;
   document.head.appendChild(style);
@@ -43,7 +47,7 @@
   var box = document.createElement("div");
   box.id = "ng-box";
   box.innerHTML =
-    '<div id="ng-head">NashiGold Assistant<small>مساعد ناشي جولد · Ask in English or العربية</small></div>' +
+    '<div id="ng-head">NashiGold Assistant<small>مساعد ناشي ذهب · Ask in English or العربية</small></div>' +
     '<div id="ng-msgs"></div>' +
     '<form id="ng-form"><input id="ng-in" dir="auto" autocomplete="off" placeholder="Type a message… اكتب رسالتك"/><button id="ng-send">Send</button></form>';
   document.body.appendChild(btn);
@@ -78,7 +82,7 @@
     var open = box.style.display === "flex";
     box.style.display = open ? "none" : "flex";
     if (!open && !msgs.children.length)
-      add("assistant", "Welcome to NashiGold ✨ How can I help you today?\nأهلاً بك في ناشي جولد، كيف أقدر أساعدك؟");
+      add("assistant", "Welcome to NashiGold ✨ How can I help you today?\nأهلاً بك في ناشي ذهب، كيف أقدر أساعدك؟");
     if (!open) input.focus();
   };
 

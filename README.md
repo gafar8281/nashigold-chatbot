@@ -56,7 +56,7 @@ On Render, create a Docker web service and set `GEMINI_API_KEY`, `ALLOWED_ORIGIN
 Deploy the backend (Render, Railway, a VPS, AWS/GCP…), set `ALLOWED_ORIGINS` to your domain, then paste one line before `</body>`:
 
 ```html
-<script src="https://chat.nashigold.com/widget.js" data-api="https://chat.nashigold.com"></script>
+<script src="https://nashigold-chatbot.onrender.com/widget.js" data-api="https://nashigold-chatbot.onrender.com/"></script>
 ```
 
 - **Shopify:** Online Store → Themes → Edit code → `theme.liquid`
