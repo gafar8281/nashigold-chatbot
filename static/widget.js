@@ -26,7 +26,7 @@
   #ng-in{flex:1;border:none;padding:12px;font-size:14px;outline:none}
   #ng-send{background:none;border:none;color:${GOLD};font-weight:700;padding:0 16px;cursor:pointer}
   @media (max-width:600px){
-    #ng-btn{bottom:calc(80px + env(safe-area-inset-bottom,0px));right:16px}
+    #ng-btn{bottom:calc(80px + env(safe-area-inset-bottom,0px));right:calc(8px + env(safe-area-inset-right,0px))}
     #ng-box{bottom:calc(176px + env(safe-area-inset-bottom,0px));right:16px;max-width:calc(100vw - 32px);max-height:calc(100vh - 200px)}
   }`;
   var style = document.createElement("style");
